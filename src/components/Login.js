@@ -9,6 +9,41 @@ const Login = ({func}) => {
     console.log(password);
   }
 
+	let valid = false
+
+	async function checkUser(){
+
+		let username = document.getElementById('username').value;
+		let password = document.getElementById('password').value;
+
+		console.log(username)
+		console.log(password)
+
+		const userInfo = username
+
+		let response = await fetch("http://localhost:8080/users/check1", {
+			method: 'GET',
+			headers: {"Content-Type" : "application/json"}
+		})
+
+		let data = await response.json();
+		console.log(data);
+
+		Object.keys(data).some(function (key){
+			if(data[key].username === username){
+				if(data[key].password === password){
+					console.log("you did it")
+					valid = true
+					if (valid === true){
+						console.log(data[key].lesson_id)
+						func(data[key].lesson_id);
+						return;
+					}
+				}
+			}
+		})
+	}
+
   return (
 		<div>
 			<LoginStyle0> 
@@ -19,11 +54,11 @@ const Login = ({func}) => {
 						<label>Password</label>
 					</Blocker>
 					<Blocker>
-						<input/>
-						<input/>
+						<input id='username'/>
+						<input id='password'/>
 					</Blocker>
 				</LoginStyle1>
-				<DivStyle><ButtonStyle onClick={func}>Login</ButtonStyle></DivStyle>
+				<DivStyle><ButtonStyle onClick={() => checkUser()}>Login</ButtonStyle></DivStyle>
 			</LoginStyle0>
 		</div>
   )
