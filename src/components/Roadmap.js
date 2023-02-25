@@ -1,9 +1,10 @@
-import Lesson from "./elements/Lesson";
+import Unit from "./Unit";
 
 const RoadMap = () => {
     return (
         <div>
-            <Lesson />
+            <Unit number={1}/>
+            <Unit number={2}/>
         </div>
     )
 }

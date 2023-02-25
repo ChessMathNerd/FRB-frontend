@@ -1,10 +1,15 @@
 import '../../css/lesson.css';
 
-const Lesson = () => {
+const Lesson = ({number, id, marginLeft, color, shadow}) => {
+
+
+
     return (
-        <button className='lesson-graphic-wrapper'>
-            <div className='lesson-text-wrapper'>1</div>
-        </button>
+        <div>
+            <button style={{marginLeft: marginLeft}} className='lesson-graphic-wrapper'>
+                <div className='lesson-text-wrapper'>{number}</div>
+            </button>
+        </div>
     )
 }
 
